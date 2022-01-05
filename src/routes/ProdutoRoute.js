@@ -9,7 +9,7 @@ router.post('/', Controller.store);
 
 // retorna todos os dados
 router.get('/', Controller.index);
-router.get('/user/:id', Controller.indexEstabelecimento);
+router.get('/estabelecimento/:id', Controller.indexEstabelecimento);
 
 
 // // retorna um dado

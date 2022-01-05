@@ -57,21 +57,21 @@ module.exports = {
             return ({status:400, error});
         }
     },
-    async getAllEstabelecimentos(pageSize = 1000, order = "ASC", filter = "Nome", page = 0, type="todos", id){
+    async getAllEstabelecimento(pageSize = 1000, order = "ASC", filter = "Nome", page = 0, type="todos", id){
         
         const _pagina = parseInt(page)
         const _tamanho = parseInt(pageSize)
         const condicao = {
             where: {
-                Id: id
+                Id_Estabelecimento: id
               }
         }
-        console.log(condicao)
+        
         if (type!='todos'){
             condicao = {
                 where: {
                     [Op.and]: [
-                        { Id: id },
+                        { Id_Estabelecimento: id },
                         { Tipo: type }
                       ]
                   }

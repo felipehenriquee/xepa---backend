@@ -66,7 +66,7 @@ module.exports = {
         const _tamanho = parseInt(pageSize)
         const condicao = {
             where: {
-                Id: id
+                Id_Usuario: id
               }
         }
         console.log(condicao)
@@ -74,7 +74,7 @@ module.exports = {
             condicao = {
                 where: {
                     [Op.and]: [
-                        { Id: id },
+                        { Id_Usuario: id },
                         { Tipo: type }
                       ]
                   }
