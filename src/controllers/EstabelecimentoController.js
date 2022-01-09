@@ -50,7 +50,12 @@ module.exports = {
         const result = await Service.edit(req.body, id);
         return res.json(result);
     },
-    
+    async media(req, res){
+        const {id} = req.params;
+        const result = await Service.mediaDesconto(id);
+        console.log(result)
+        return res.json(result);
+    },
     
     
 }

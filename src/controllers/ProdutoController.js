@@ -31,6 +31,7 @@ module.exports = {
         
         const result = await Service.create(req.body);
 
+        console.log(result)
         
         
         return res.json(result)

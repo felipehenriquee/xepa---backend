@@ -1,4 +1,5 @@
 const Modelo = require('../models/Estabelecimentos');
+
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -153,7 +154,42 @@ module.exports = {
 
         
     },
-    
+    async editTotalProdutos(id, valor){
+        console.log(id, valor)
+        try {
+            await Modelo.increment(
+                { TotalProdutos: +1, ValorDescontos: +valor } ,
+                {
+                    where:{
+                        Id: id
+                    }
+                }
+                );
+            
+            const result = await Modelo.findByPk(id, {
+                attributes:["TotalProdutos", "ValorDescontos"]
+            })
+            var Media = Math.round(result.ValorDescontos/result.TotalProdutos);
+
+            var MediaDescontos = (Media*5)/100;
+            console.log(MediaDescontos)
+            const edit = await Modelo.update(
+                {MediaDescontos: MediaDescontos }, 
+                { where:{
+                    Id: id
+                }})
+            
+            console.log(edit)
+            return (true);
+        } catch (error) {
+            
+            console.log(error)
+            return error
+        }
+
+        
+    },
+   
     
     
 }

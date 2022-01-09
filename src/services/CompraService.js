@@ -4,14 +4,11 @@ const { Op } = require("sequelize");
 module.exports = {
     
     async create(dados){
-       
-        
-        
+       const { Id_Produto, Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario } = dados;
         
         try {
-            const result = await Modelo.create( dados );
-        
-            
+            const result = await Modelo.create( {Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario} );
+            result.setProdutos(Id_Produto);
             return (result);
         } catch (error) {
             
@@ -97,7 +94,7 @@ module.exports = {
                 ],
                 limit: _tamanho,
                 offset: _pagina*_tamanho,
-                // include:[{association:"images", through:{attributes:[]}}],
+                include:[{association:"produtos"}],
                 condicao
             });
             
@@ -112,8 +109,8 @@ module.exports = {
 
             const result = await Modelo.findByPk( id,{
                
-                // include:[ 
-                // {association:"images", through:{attributes:[]}},],
+                include:[ 
+                {association:"produtos", through:{attributes:[]}},],
                 
             })
            

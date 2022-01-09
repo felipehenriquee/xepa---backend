@@ -20,10 +20,7 @@ class compra extends Model{
                 type: DataTypes.UUID,
                 allowNull: false,
               },
-              Id_Produto: {
-                type: DataTypes.UUID,
-                allowNull: false,
-              },
+             
               Status_estabelecimento: {
                 type: DataTypes.STRING,
                 
@@ -44,9 +41,9 @@ class compra extends Model{
           
     }
     static associate(models){
-       
+      console.log(models)
         
-        // this.hasOne(models.usuarios, {foreignKey:"Id_usuario", through:'estandes_images', as:"images"})
+      this.belongsToMany(models.produto, {foreignKey:"Id_Compra", through:'compra-produto', as:"produtos"})
         
         
     }

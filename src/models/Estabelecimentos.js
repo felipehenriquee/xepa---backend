@@ -27,39 +27,49 @@ class estabelecimento extends Model{
               },
               Tipo:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Logradouro:{
                 type: DataTypes.STRING,
-                allowNull: false,
+               
               },
               Bairro:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Localidade:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Uf:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Cep:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Complemento:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Numero:{
                 type: DataTypes.STRING,
-                allowNull: false,
+                
               },
               Telefone:{
                 type: DataTypes.STRING,
-                allowNull: false,
+               
+              },
+              TotalProdutos:{
+                type: DataTypes.INTEGER
+                
+              },
+              MediaDescontos:{
+                type: DataTypes.DOUBLE
+              },
+              ValorDescontos:{
+                type: DataTypes.DOUBLE
               }
             
              

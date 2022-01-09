@@ -11,7 +11,6 @@ router.post('/', Controller.store);
 router.get('/', Controller.index);
 router.get('/user/:id', Controller.indexUsuario);
 
-
 // // retorna um dado
 router.get('/:id', Controller.getById);
 

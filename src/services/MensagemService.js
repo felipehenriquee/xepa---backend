@@ -10,7 +10,7 @@ module.exports = {
         try {
             
             const result = await Modelo.create({Mensagem, Id_Produto, Id_Compra, Cancelar, Icone, Quem} );
-        
+            
             console.log(result)
             return (result);
         } catch (error) {

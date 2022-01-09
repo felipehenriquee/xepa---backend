@@ -48,8 +48,20 @@ class produto extends Model{
                 type: DataTypes.DOUBLE,
                 
               }, 
+              Desconto: {
+                type: DataTypes.DOUBLE,
+                
+              }, 
               Quantidade: {
                 type: DataTypes.INTEGER,
+                
+              }, 
+              StartTime: {
+                type: DataTypes.DATE,
+                
+              }, 
+              EndTime: {
+                type: DataTypes.DATE,
                 
               }, 
             
@@ -62,9 +74,9 @@ class produto extends Model{
           
     }
     static associate(models){
-       
+       console.log(models)
         
-        // this.hasOne(models.usuarios, {foreignKey:"Id_usuario", through:'estandes_images', as:"images"})
+        this.belongsToMany(models.compra, {foreignKey:"produtoId", through:'compra-produto', as:"produtos"})
         
         
     }

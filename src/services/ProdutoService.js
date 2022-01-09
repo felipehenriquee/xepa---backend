@@ -1,13 +1,15 @@
 const Modelo = require('../models/Produtos');
+const estabelecimentoService = require('./EstabelecimentoService')
 const { Op } = require("sequelize");
 
 module.exports = {
     
     async create(dados){
-       
+        dados.Desconto = this.CalculaDesconto(dados.Preco_Original, dados.Preco_Promocional)
         try {
             const result = await Modelo.create( dados );
-        
+    
+            const result2 = await  estabelecimentoService.editTotalProdutos(dados.Id_Estabelecimento, dados.Desconto)
             
             return (result);
         } catch (error) {
@@ -150,7 +152,9 @@ module.exports = {
 
         
     },
-    
+    CalculaDesconto(original, promocional){
+        return Math.round((promocional*100)/original)
+    }
     
     
 }
