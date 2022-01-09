@@ -70,6 +70,12 @@ class estabelecimento extends Model{
               },
               ValorDescontos:{
                 type: DataTypes.DOUBLE
+              },
+              HoraAbre:{
+                type: DataTypes.TIME
+              },
+              HoraFecha:{
+                type: DataTypes.TIME
               }
             
              
