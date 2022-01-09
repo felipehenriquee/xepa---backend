@@ -96,7 +96,10 @@ module.exports = {
                 limit: _tamanho,
                 offset: _pagina*_tamanho,
                 
-                condicao
+                condicao,
+                include:[ 
+                    {association:"produtos", through:{attributes:[]}},],
+
             });
             
             return ({status:200, result:{rows:result}});
