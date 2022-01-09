@@ -98,9 +98,13 @@ module.exports = {
                 
                 condicao,
                 include:[ 
-                    {association:"produtos", through:{attributes:[]}},],
+                    {association:"usuarios"},
+                    {association:"estabelecimentos"}, 
+                    {association:"produtos", through:{attributes:[]}}],
 
             });
+
+            
             
             return ({status:200, result:{rows:result}});
         } catch (error) {

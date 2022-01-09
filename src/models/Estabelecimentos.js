@@ -90,7 +90,8 @@ class estabelecimento extends Model{
        
         
         // this.hasOne(models.usuarios, {foreignKey:"Id_usuario", through:'estandes_images', as:"images"})
-      // this.belongsToMany(models.compras, {foreignKey:"Id_Estabelecimento", as:"compras"});
+        this.hasOne(models.compra, {foreignKey:"Id_Estabelecimento", through:"Compras", as:"estabelecimentos"});
+       
         
         
     }

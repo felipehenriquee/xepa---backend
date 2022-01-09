@@ -44,6 +44,8 @@ class compra extends Model{
       console.log(models)
         
       this.belongsToMany(models.produto, {foreignKey:"Id_Compra", through:'compra-produto', as:"produtos"});
+      this.belongsTo(models.estabelecimento, {foreignKey:"Id_Estabelecimento", as:"estabelecimentos"});
+      this.belongsTo(models.usuario, {foreignKey:"Id_Usuario", as:"usuarios"});
       
         
         

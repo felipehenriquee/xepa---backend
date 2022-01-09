@@ -59,6 +59,14 @@ class usuario extends Model{
         }
           
     }
+    static associate(models){
+       
+        
+      
+      this.hasOne(models.compra, {foreignKey:"Id_Usuario", through:"Compras", as:"usuarios"});
+      
+      
+  }
     
 }
 
