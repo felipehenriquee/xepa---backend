@@ -1,4 +1,5 @@
 const Modelo = require('../models/Compras');
+const Estabelecimento = require('./EstabelecimentoService')
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -94,7 +95,7 @@ module.exports = {
                 ],
                 limit: _tamanho,
                 offset: _pagina*_tamanho,
-                include:[{association:"produtos"}],
+                
                 condicao
             });
             
@@ -113,8 +114,9 @@ module.exports = {
                 {association:"produtos", through:{attributes:[]}},],
                 
             })
+            const estabelecimento = await Estabelecimento.getOne(result.Id_Estabelecimento)
            
-            return ({status:200, result});
+            return ({status:200, result, estabelecimento: estabelecimento.result});
         } catch (error) {
             console.log(error)
             return ({status:400, error});

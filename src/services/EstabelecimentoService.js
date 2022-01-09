@@ -102,7 +102,7 @@ module.exports = {
         }
     },
     async getOne(id){
-        console.log("id", id)
+        
         try {
 
             const result = await Modelo.findByPk( id,{
@@ -112,7 +112,7 @@ module.exports = {
                 
             })
            
-            console.log(result)
+            
             return ({status:200, result});
         } catch (error) {
             console.log(error)
