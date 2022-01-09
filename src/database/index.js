@@ -6,6 +6,8 @@ const  estandes = require("../models/Standes");
 const  usuario = require("../models/Usuarios");
 const  estabelecimento = require("../models/Estabelecimentos");
 const  produto = require("../models/Produtos");
+const  compra = require("../models/Compras");
+const  mensagem = require("../models/Mensagens");
 
 const connection = new Sequelize(dbConfig);
 
@@ -14,10 +16,14 @@ estandes.init(connection);
 usuario.init(connection);
 estabelecimento.init(connection);
 produto.init(connection);
+compra.init(connection);
+mensagem.init(connection);
 
 estandes.associate(connection.models)
 images.associate(connection.models)
 produto.associate(connection.models)
+compra.associate(connection.models)
+mensagem.associate(connection.models)
 
 
 

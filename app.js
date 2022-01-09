@@ -3,14 +3,12 @@ const morgan = require('morgan');
 const jwt = require('jsonwebtoken');
 var cors = require('cors')
 
-
-
-
 const rotaImage = require('./src/routes/ImageRoute');
 const rotaEstande = require('./src/routes/EstandeRoute');
 const rotaUsuario = require('./src/routes/UsuarioRoute');
 const rotaEstabelecimento = require('./src/routes/EstabelecimentoRoute');
 const rotaProduto = require('./src/routes/ProdutoRoute');
+const rotaCompra = require('./src/routes/CompraRoute');
 
 
 
@@ -51,6 +49,7 @@ app.use(cors(corsOptions))
 app.use('/api/usuario', rotaUsuario);
 app.use('/api/estabelecimento', rotaEstabelecimento);
 app.use('/api/produto', rotaProduto);
+app.use('/api/compra', rotaCompra);
 
 
 // rota not found
