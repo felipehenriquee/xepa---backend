@@ -8,6 +8,7 @@ const  estabelecimento = require("../models/Estabelecimentos");
 const  produto = require("../models/Produtos");
 const  compra = require("../models/Compras");
 const  mensagem = require("../models/Mensagens");
+const  compraproduto = require("../models/CompraProduto");
 
 const connection = new Sequelize(dbConfig);
 
@@ -18,6 +19,7 @@ estabelecimento.init(connection);
 produto.init(connection);
 compra.init(connection);
 mensagem.init(connection);
+compraproduto.init(connection);
 
 estandes.associate(connection.models)
 images.associate(connection.models)

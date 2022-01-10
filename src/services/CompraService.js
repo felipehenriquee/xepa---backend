@@ -1,19 +1,26 @@
 const Modelo = require('../models/Compras');
 const Estabelecimento = require('./EstabelecimentoService')
+const CompraProduto = require('./CompraProdutoService')
 const { Op } = require("sequelize");
 
 module.exports = {
     
     async create(dados){
-       const { Id_Produto, Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario } = dados;
-        
+       const { Id_Produto, Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario, Quantidade } = dados;
+        console.log(Quantidade)
         try {
             const result = await Modelo.create( {Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario} );
-            result.setProdutos(Id_Produto);
+            // result.setProdutos(Id_Produto)
+            await result.setProdutos(Id_Produto);
+            for (let i = 0; i < Quantidade.length; i++) {
+                const result2 = await CompraProduto.edit(result.Id, Id_Produto[i], Quantidade[i])
+
+                
+            }
             return (result);
         } catch (error) {
             
-            
+            console.log(error)
             return error
         }
 
