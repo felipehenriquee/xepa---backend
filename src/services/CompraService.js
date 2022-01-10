@@ -127,7 +127,11 @@ module.exports = {
             const result = await Modelo.findByPk( id,{
                
                 include:[ 
-                {association:"produtos", through:{attributes:[]}},],
+                    {association:"usuarios", attributes:["Id", "Nome", "Email"]},
+                    {association:"estabelecimentos"}, 
+                    {association:"produtos", through:{attributes:["Quantidade"]}},
+                    
+                ],
                 
             })
             const estabelecimento = await Estabelecimento.getOne(result.Id_Estabelecimento)
