@@ -51,14 +51,18 @@ class usuario extends Model{
           hooks: {
             
             
-            beforeSave: hashPassword
-          }
-        }),
+            beforeSave: hashPassword,
+            
+          },
+          
+        });
         usuario.prototype.comparePassword = function (Senha) {
+          console.log(Senha)
           return bcrypt.compareAsync(Senha, this.Senha)
         }
-          
+           
     }
+    
     static associate(models){
        
         

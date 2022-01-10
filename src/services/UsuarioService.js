@@ -124,21 +124,24 @@ module.exports = {
     },
     
     async login(Email, Senha){
+        console.log(Email, Senha)
+        
         try {
 
-            var result = await Modelo.findOne( {Email, Senha},
+            var result = await Modelo.findOne( 
                 {
                     where:{
                         [Op.and]: [
-                            { Email: Email },
-                            { Senha: Senha }
+                            { Email: Email },                   
                         ]
                 }
             }
                 
             )
+            const passwordMatch = await result.comparePassword(Senha);
             
-            if(!result){
+
+            if(!result || !passwordMatch){
                 return ({ status: 401, result: "Erro Login" });
             }
             

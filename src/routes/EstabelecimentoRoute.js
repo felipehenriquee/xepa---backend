@@ -7,7 +7,7 @@ const login = require("../middleware/login")
 
 
 // cadastra um dado
-router.post('/', login.opcional, Controller.store);
+router.post('/', login.obrigatorio, Controller.store);
 
 // retorna todos os dados
 router.get('/', login.opcional, Controller.index);
