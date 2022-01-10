@@ -107,10 +107,12 @@ module.exports = {
                 include:[ 
                     {association:"usuarios"},
                     {association:"estabelecimentos"}, 
-                    {association:"produtos", through:{attributes:[]}}],
+                    {association:"produtos", through:{attributes:["Quantidade"]}},
+                    
+                ],
 
             });
-
+            
             
             
             return ({status:200, result:{rows:result}});

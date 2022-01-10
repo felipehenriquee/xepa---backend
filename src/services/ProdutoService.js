@@ -131,10 +131,10 @@ module.exports = {
         }
     },
     async edit(dados, id){
-        const { Nome, Imagem, Tipo, Cep, Logradouro, Bairro, Localidade, Uf, Complemento, Numero, Telefone } = dados;
+        const {Nome, Descricao, Tipo, Imagem, Data, Peso, Preco_Original, Preco_Promocional, StartTime, EndTime, Estoque } = dados;
         try {
             const result = await Modelo.update(
-                { Nome, Descricao, Tipo, Imagem, Data, Peso, Preco_Original, Preco_Promocional } ,
+                { Nome, Descricao, Tipo, Imagem, Data, Peso, Preco_Original, Preco_Promocional, StartTime, EndTime, Estoque } ,
                 {
                     where:{
                         Id: id
