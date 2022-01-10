@@ -124,7 +124,7 @@ module.exports = {
     },
     
     async login(Email, Senha){
-        console.log(Email, Senha)
+        console.log("email",Email, Senha)
         
         try {
 

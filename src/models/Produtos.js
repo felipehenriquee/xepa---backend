@@ -52,7 +52,7 @@ class produto extends Model{
                 type: DataTypes.DOUBLE,
                 
               }, 
-              Quantidade: {
+              Estoque: {
                 type: DataTypes.INTEGER,
                 
               }, 

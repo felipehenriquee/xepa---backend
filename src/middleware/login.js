@@ -9,7 +9,7 @@ exports.obrigatorio = (req, res, next) =>{
         req.user = decode;
         next();
     } catch (error) {
-        return res.status(401).send({mensagem: "Token inválido"})
+        return res.status(401).send({mensagem: "Token inválido", error})
     }
 }
 
