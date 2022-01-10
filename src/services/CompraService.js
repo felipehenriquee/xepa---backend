@@ -105,7 +105,7 @@ module.exports = {
                 
                 condicao,
                 include:[ 
-                    {association:"usuarios"},
+                    {association:"usuarios", attributes:["Id", "Nome", "Email"]},
                     {association:"estabelecimentos"}, 
                     {association:"produtos", through:{attributes:["Quantidade"]}},
                     
