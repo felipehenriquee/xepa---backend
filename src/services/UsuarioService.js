@@ -1,27 +1,26 @@
 const Modelo = require('../models/Usuarios');
 const { Op } = require("sequelize");
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
+
 
 module.exports = {
     
     async create(dados){
-       
-        
-        
-        
+
         try {
-            const result = await Modelo.create( dados );
-        
-            
-            return (result);
+            var result = await Modelo.create( dados );
+            result.Senha = undefined;
+            const token = jwt.sign({user: result.Id, email: result.Email}, process.env.JWT_SECRET)
+
+            return ({result, token});
         } catch (error) {
             
             
             return error
         }
-
-        
+ 
     },
-    
     
     async getAll(pageSize = 1000, order = "ASC", filter = "Nome", page = 0, type="todos"){
         console.log("user")
@@ -44,7 +43,12 @@ module.exports = {
         try {
             const result = await Modelo.findAll({
                 
-                
+                attributes:["Id",
+                "Nome",
+                "Email",
+                "Tipo",
+                "createdAt",
+                "updatedAt"],
                 order: [
                     [filter, order],
                 ],
@@ -65,7 +69,12 @@ module.exports = {
         try {
 
             const result = await Modelo.findByPk( id,{
-               
+                attributes:["Id",
+                "Nome",
+                "Email",
+                "Tipo",
+                "createdAt",
+                "updatedAt"],
                 // include:[ 
                 // {association:"images", through:{attributes:[]}},],
                 
@@ -114,6 +123,33 @@ module.exports = {
         
     },
     
-    
+    async login(Email, Senha){
+        try {
+
+            var result = await Modelo.findOne( {Email, Senha},
+                {
+                    where:{
+                        [Op.and]: [
+                            { Email: Email },
+                            { Senha: Senha }
+                        ]
+                }
+            }
+                
+            )
+            
+            if(!result){
+                return ({ status: 401, result: "Erro Login" });
+            }
+            
+            result.Senha = undefined;
+            const token = jwt.sign({user: result.Id, email: result.Email}, process.env.JWT_SECRET)
+
+            return ({ status:200, result, token });
+        } catch (error) {
+            
+            return ({status:400, error});
+        }
+    }
     
 }

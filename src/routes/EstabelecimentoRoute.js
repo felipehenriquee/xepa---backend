@@ -3,21 +3,23 @@ const Controller = require("../controllers/EstabelecimentoController");
 
 const express = require('express');
 const router = express.Router();
+const login = require("../middleware/login")
+
 
 // cadastra um dado
-router.post('/', Controller.store);
+router.post('/', login.opcional, Controller.store);
 
 // retorna todos os dados
-router.get('/', Controller.index);
-router.get('/user/:id', Controller.indexUsuario);
+router.get('/', login.opcional, Controller.index);
+router.get('/user/:id', login.opcional, Controller.indexUsuario);
 
 // // retorna um dado
-router.get('/:id', Controller.getById);
+router.get('/:id', login.opcional, Controller.getById);
 
 // edita dado
-router.put('/:id', Controller.edit);
+router.put('/:id', login.obrigatorio, Controller.edit);
 
 // apaga dado
-router.delete('/:id', Controller.delete);
+router.delete('/:id', login.obrigatorio, Controller.delete);
 
 module.exports = router;

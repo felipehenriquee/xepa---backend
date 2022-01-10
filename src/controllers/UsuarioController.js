@@ -1,7 +1,7 @@
 
 const Service = require('../services/UsuarioService');
 const Validator = require('fastest-validator');
-
+const jwt = require('jsonwebtoken')
 
 
 const v = new Validator()
@@ -44,7 +44,13 @@ module.exports = {
         const result = await Service.edit(req.body, id);
         return res.json(result);
     },
-    
+    async login(req, res){
+        const { Email, Senha } = req.body;
+        const result = await Service.login(Email, Senha);
+        
+        return res.json(result);
+
+    }
     
     
 }

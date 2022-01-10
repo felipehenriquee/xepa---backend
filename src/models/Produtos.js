@@ -74,7 +74,7 @@ class produto extends Model{
           
     }
     static associate(models){
-       console.log(models)
+       
         
         this.belongsToMany(models.compra, {foreignKey:"produtoId", through:'compra-produto', as:"produtos"})
         

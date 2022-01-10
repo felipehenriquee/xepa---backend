@@ -1,24 +1,25 @@
 const Controller = require("../controllers/ProdutoController");
+const login = require("../middleware/login")
 
 
 const express = require('express');
 const router = express.Router();
 
 // cadastra um dado
-router.post('/', Controller.store);
+router.post('/', login.obrigatorio,  Controller.store);
 
 // retorna todos os dados
-router.get('/', Controller.index);
-router.get('/estabelecimento/:id', Controller.indexEstabelecimento);
+router.get('/', login.opcional , Controller.index);
+router.get('/estabelecimento/:id', login.opcional , Controller.indexEstabelecimento);
 
 
 // // retorna um dado
-router.get('/:id', Controller.getById);
+router.get('/:id', login.opcional, Controller.getById);
 
 // edita dado
-router.put('/:id', Controller.edit);
+router.put('/:id', login.obrigatorio, Controller.edit);
 
 // apaga dado
-router.delete('/:id', Controller.delete);
+router.delete('/:id', login.obrigatorio, Controller.delete);
 
 module.exports = router;

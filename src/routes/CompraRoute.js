@@ -3,22 +3,24 @@ const Controller = require("../controllers/CompraController");
 
 const express = require('express');
 const router = express.Router();
+const login = require("../middleware/login")
+
 
 // cadastra um dado
-router.post('/', Controller.store);
+router.post('/', login.obrigatorio, Controller.store);
 
 // retorna todos os dados
 
-router.get('/getall/:id', Controller.index);
+router.get('/getall/:id', login.obrigatorio, Controller.index);
 
 
 // // retorna um dado
-router.get('/:id', Controller.getById);
+router.get('/:id', login.obrigatorio, Controller.getById);
 
 // edita dado
-router.put('/:id', Controller.edit);
+router.put('/:id', login.obrigatorio, Controller.edit);
 
 // apaga dado
-router.delete('/:id', Controller.delete);
+router.delete('/:id', login.obrigatorio, Controller.delete);
 
 module.exports = router;
