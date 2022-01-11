@@ -7,9 +7,12 @@ module.exports = {
     
     async create(dados){
        const { Id_Produto, Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario, Quantidade } = dados;
-        console.log(Quantidade)
+        const NumeroPedido = Math.floor(1000 + Math.random() * 9000);
+        console.log(NumeroPedido)
         try {
-            const result = await Modelo.create( {Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario} );
+            const result = await Modelo.create( {Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario, NumeroPedido} );
+            
+            
             // result.setProdutos(Id_Produto)
             await result.setProdutos(Id_Produto);
             for (let i = 0; i < Quantidade.length; i++) {

@@ -30,6 +30,11 @@ class compra extends Model{
                
                 
               },
+              NumeroPedido: {
+                type: DataTypes.INTEGER,
+               
+                
+              },
               
             
              
