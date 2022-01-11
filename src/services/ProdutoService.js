@@ -63,14 +63,26 @@ module.exports = {
         
         const _pagina = parseInt(page)
         const _tamanho = parseInt(pageSize)
-        const condicao = {
+        var condicao = {   
+            order: [
+                [filter, order],
+            ],
+            limit: _tamanho,
+            offset: _pagina*_tamanho,
+            // include:[{association:"images", through:{attributes:[]}}],
             where: {
                 Id_Estabelecimento: id
               }
         }
-        
+        console.log(condicao)
         if (type!='todos'){
             condicao = {
+                order: [
+                    [filter, order],
+                ],
+                limit: _tamanho,
+                offset: _pagina*_tamanho,
+                // include:[{association:"images", through:{attributes:[]}}],
                 where: {
                     [Op.and]: [
                         { Id_Estabelecimento: id },
@@ -81,17 +93,7 @@ module.exports = {
         }
 
         try {
-            const result = await Modelo.findAll({
-                
-                
-                order: [
-                    [filter, order],
-                ],
-                limit: _tamanho,
-                offset: _pagina*_tamanho,
-                // include:[{association:"images", through:{attributes:[]}}],
-                condicao
-            });
+            const result = await Modelo.findAll(condicao);
             
             return ({status:200, result:{rows:result}});
         } catch (error) {
