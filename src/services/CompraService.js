@@ -87,8 +87,13 @@ module.exports = {
                 offset: _pagina*_tamanho,
                 where:{
                     Id_Usuario: id
-                }
-                
+                },
+                include:[ 
+                    {association:"usuarios", attributes:["Id", "Nome", "Email"]},
+                    {association:"estabelecimentos"}, 
+                    {association:"produtos", through:{attributes:["Quantidade"]}},
+                    
+                ],
                 
 
             
@@ -108,7 +113,13 @@ module.exports = {
                     offset: _pagina*_tamanho,
                     where:{
                         Id_Estabelecimento: id
-                    }
+                    },
+                    include:[ 
+                        {association:"usuarios", attributes:["Id", "Nome", "Email"]},
+                        {association:"estabelecimentos"}, 
+                        {association:"produtos", through:{attributes:["Quantidade"]}},
+                        
+                    ],
                     
                     
     
@@ -129,7 +140,13 @@ module.exports = {
                 offset: _pagina*_tamanho,
                 where:{
                     Id_Produto: id
-                }
+                },
+                include:[ 
+                    {association:"usuarios", attributes:["Id", "Nome", "Email"]},
+                    {association:"estabelecimentos"}, 
+                    {association:"produtos", through:{attributes:["Quantidade"]}},
+                    
+                ],
                 
                 
 
