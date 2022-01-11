@@ -66,35 +66,15 @@ module.exports = {
     //     }
     // },
     async getAll(pageSize = 1000, order = "DESC", filter = "CreatedAt", page = 0, type="estabelecimento", id){
-        
+        console.log(id, type)
         const _pagina = parseInt(page)
         const _tamanho = parseInt(pageSize)
-        const condicao = {
-            where: {
-                Id_Estabelecimento: id
-              }
+        var condicao = {
+            where:{}
         }
         if (type=='usuario'){
             condicao = {
-                where: {
-                    [Op.and]: [
-                        { Id_Usuario: id },
-                      ]
-                  }
-            }
-        }
-        else if (type=='produto'){
-            condicao = {
-                where: {
-                    [Op.and]: [
-                        { Id_Produto: id },
-                      ]
-                  }
-            }
-        }
-
-        try {
-            const result = await Modelo.findAll({
+                
                 
                 
                 order: [
@@ -102,16 +82,63 @@ module.exports = {
                 ],
                 limit: _tamanho,
                 offset: _pagina*_tamanho,
+                where:{
+                    Id_Usuario: id
+                }
                 
-                condicao,
-                include:[ 
-                    {association:"usuarios", attributes:["Id", "Nome", "Email"]},
-                    {association:"estabelecimentos"}, 
-                    {association:"produtos", through:{attributes:["Quantidade"]}},
-                    
-                ],
+                
 
-            });
+            
+                  
+            
+        }
+        }
+        else if (type==="estabelecimento"){
+            condicao = {
+                
+                
+                
+                    order: [
+                        [filter, order],
+                    ],
+                    limit: _tamanho,
+                    offset: _pagina*_tamanho,
+                    where:{
+                        Id_Estabelecimento: id
+                    }
+                    
+                    
+    
+                
+                      
+                
+            }
+        }
+        else if (type==='produto'){
+            condicao = {
+                
+                
+                
+                order: [
+                    [filter, order],
+                ],
+                limit: _tamanho,
+                offset: _pagina*_tamanho,
+                where:{
+                    Id_Produto: id
+                }
+                
+                
+
+            
+                  
+            
+        }
+        }
+
+        console.log(condicao)
+        try {
+            const result = await Modelo.findAll(condicao);
             
             
             

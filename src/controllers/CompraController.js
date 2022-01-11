@@ -10,7 +10,8 @@ module.exports = {
     // listar todos usuarios
     async index(req, res){
         const {pageSize, order, filter, page, type} = req.query;
-        const result = await Service.getAll(pageSize, order, filter, page, type);
+        const {id}=req.params
+        const result = await Service.getAll(pageSize, order, filter, page, type, id);
         return res.json(result);
     },
     async getById(req, res){
