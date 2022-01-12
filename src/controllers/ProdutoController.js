@@ -19,6 +19,12 @@ module.exports = {
         const result = await Service.getAllEstabelecimento(pageSize, order, filter, page, type, id);
         return res.json(result);
     },
+    async getAllEstabelecimentoAdmin(req, res){
+        const {pageSize, order, filter, page, type} = req.query;
+        const {id} = req.params;
+        const result = await Service.getAllEstabelecimentoAdmin(pageSize, order, filter, page, type, id);
+        return res.json(result);
+    },
     async getById(req, res){
         const { id } = req.params;
         const result = await Service.getOne(id);

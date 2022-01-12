@@ -73,6 +73,52 @@ module.exports = {
             offset: _pagina*_tamanho,
             // include:[{association:"images", through:{attributes:[]}}],
             where: {
+                [Op.and]: [
+                    { Id_Estabelecimento: id },
+                    { Status: true }
+                  ]
+              }
+        }
+        console.log(condicao)
+        if (type!='todos'){
+            condicao = {
+                order: [
+                    [filter, order],
+                ],
+                limit: _tamanho,
+                offset: _pagina*_tamanho,
+                // include:[{association:"images", through:{attributes:[]}}],
+                where: {
+                    [Op.and]: [
+                        { Id_Estabelecimento: id },
+                        { Tipo: type },
+                        { Status: true }
+                      ]
+                  }
+            }
+        }
+
+        try {
+            const result = await Modelo.findAll(condicao);
+            
+            return ({status:200, result:{rows:result}});
+        } catch (error) {
+            console.log(error)
+            return ({status:400, error});
+        }
+    },
+    async getAllEstabelecimentoAdmin(pageSize = 1000, order = "ASC", filter = "Nome", page = 0, type="todos", id){
+        
+        const _pagina = parseInt(page)
+        const _tamanho = parseInt(pageSize)
+        var condicao = {   
+            order: [
+                [filter, order],
+            ],
+            limit: _tamanho,
+            offset: _pagina*_tamanho,
+            // include:[{association:"images", through:{attributes:[]}}],
+            where: {
                 Id_Estabelecimento: id
               }
         }

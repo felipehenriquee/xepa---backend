@@ -11,6 +11,7 @@ router.post('/', login.obrigatorio,  Controller.store);
 // retorna todos os dados
 router.get('/', login.opcional , Controller.index);
 router.get('/estabelecimento/:id', login.opcional , Controller.indexEstabelecimento);
+router.get('/admin/:id', login.opcional , Controller.getAllEstabelecimentoAdmin);
 
 
 // // retorna um dado
