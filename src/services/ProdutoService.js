@@ -26,18 +26,18 @@ module.exports = {
         
         const _pagina = parseInt(page)
         const _tamanho = parseInt(pageSize)
-        const condicao = {
+        var condicao = {
             order: [
                 [filter, order],
             ],
             limit: _tamanho,
             offset: _pagina*_tamanho,
-            // include:[{association:"images", through:{attributes:[]}}],
+            
             where: {
                 Status: true
               }
         }
-        
+        console.log(condicao)
         if (type!='todos'){
             condicao = {
                 order: [
@@ -53,12 +53,7 @@ module.exports = {
         }
 
         try {
-            const result = await Modelo.findAll({
-                
-                
-                
-                condicao
-            });
+            const result = await Modelo.findAll(condicao);
             
             return ({status:200, result:{rows:result}});
         } catch (error) {
