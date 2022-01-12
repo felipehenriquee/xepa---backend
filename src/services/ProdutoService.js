@@ -27,13 +27,25 @@ module.exports = {
         const _pagina = parseInt(page)
         const _tamanho = parseInt(pageSize)
         const condicao = {
+            order: [
+                [filter, order],
+            ],
+            limit: _tamanho,
+            offset: _pagina*_tamanho,
+            // include:[{association:"images", through:{attributes:[]}}],
             where: {
-                
+                Status: true
               }
         }
         
         if (type!='todos'){
             condicao = {
+                order: [
+                    [filter, order],
+                ],
+                limit: _tamanho,
+                offset: _pagina*_tamanho,
+                // include:[{association:"images", through:{attributes:[]}}],
                 where: {
                       Tipo: type,
                   }
@@ -44,12 +56,7 @@ module.exports = {
             const result = await Modelo.findAll({
                 
                 
-                order: [
-                    [filter, order],
-                ],
-                limit: _tamanho,
-                offset: _pagina*_tamanho,
-                // include:[{association:"images", through:{attributes:[]}}],
+                
                 condicao
             });
             
@@ -137,6 +144,29 @@ module.exports = {
         try {
             const result = await Modelo.update(
                 { Nome, Descricao, Tipo, Imagem, Data, Peso, Preco_Original, Preco_Promocional, StartTime, EndTime, Estoque } ,
+                {
+                    where:{
+                        Id: id
+                    }
+                }
+                );
+                
+
+            return ({status:200, result});
+        } catch (error) {
+            
+            console.log(error)
+            return error
+        }
+
+        
+    },
+    async editStatus(dados, id){
+        const { Status } = dados;
+        console.log(Status)
+        try {
+            const result = await Modelo.update(
+                { Status } ,
                 {
                     where:{
                         Id: id

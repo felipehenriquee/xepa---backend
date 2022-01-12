@@ -18,6 +18,7 @@ router.get('/:id', login.opcional, Controller.getById);
 
 // edita dado
 router.put('/:id', login.obrigatorio, Controller.edit);
+router.put('/status/:id', login.obrigatorio, Controller.editStatus);
 
 // apaga dado
 router.delete('/:id', login.obrigatorio, Controller.delete);

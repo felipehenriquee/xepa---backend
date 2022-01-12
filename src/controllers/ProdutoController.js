@@ -51,6 +51,13 @@ module.exports = {
         const result = await Service.edit(req.body, id);
         return res.json(result);
     },
+    async editStatus(req, res){
+        console.log("tenta editar")
+        const {id} = req.params;
+        const result = await Service.editStatus(req.body, id);
+        console.log(result)
+        return res.json(result);
+    },
     
     
     

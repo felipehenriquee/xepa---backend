@@ -56,6 +56,10 @@ class produto extends Model{
                 type: DataTypes.INTEGER,
                 
               }, 
+              Status: {
+                type: DataTypes.BOOLEAN,
+                
+              },
               StartTime: {
                 type: DataTypes.DATE,
                 
