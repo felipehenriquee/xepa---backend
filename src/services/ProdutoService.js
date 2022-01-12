@@ -155,7 +155,7 @@ module.exports = {
         
     },
     CalculaDesconto(original, promocional){
-        return Math.round((promocional*100)/original)
+        return Math.round((original-promocional*100)/original)
     }
     
     
