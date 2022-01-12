@@ -8,7 +8,7 @@ module.exports = {
     async create(dados){
         var { Id_Produto, Id_Usuario,Id_Estabelecimento, Quantidade, Status_estabelecimento, Status_usuario } = dados;
         Status_usuario  = "Aguardando restaurante aceitar pedido";
-        Status_estabelecimento  = "Pedido Recebido";
+        Status_estabelecimento  = "Pedido em espera";
         const NumeroPedido = Math.floor(1000 + Math.random() * 9000);
         console.log(NumeroPedido)
         try {
