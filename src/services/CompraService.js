@@ -6,7 +6,9 @@ const { Op } = require("sequelize");
 module.exports = {
     
     async create(dados){
-       const { Id_Produto, Id_Usuario,Id_Estabelecimento,Status_estabelecimento,Status_usuario, Quantidade } = dados;
+        const { Id_Produto, Id_Usuario,Id_Estabelecimento, Quantidade } = dados;
+        const { Status_estabelecimento } = "Aguardando restaurante aceitar pedido";
+        const { Status_usuario } = "Pedido Recebido";
         const NumeroPedido = Math.floor(1000 + Math.random() * 9000);
         console.log(NumeroPedido)
         try {
