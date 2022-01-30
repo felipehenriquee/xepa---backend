@@ -10,13 +10,24 @@
 //     }
 // }
 
+// module.exports = {
+//     dialect: 'mysql',
+//     host: 'mysql.concertodenataldacatedral.com.br',
+    
+//     username: 'concertodenata',
+//     password: 'xepa123',
+//     database: 'concertodenata',
+//     define: {
+//         timestamps: true,
+//     }
+// }
 module.exports = {
     dialect: 'mysql',
-    host: 'mysql.concertodenataldacatedral.com.br',
+    host: 'sql717.main-hosting.eu',
     
-    username: 'concertodenata',
-    password: 'xepa123',
-    database: 'concertodenata',
+    username: 'u984285269_xepauser',
+    password: 'Xep@1234',
+    database: 'u984285269_xepa',
     define: {
         timestamps: true,
     }
